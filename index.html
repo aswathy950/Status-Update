@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="dialyStatus" >
+  <head>
+    <script type="text/javascript" src="js/lib/jquery.js"></script></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script  src="js/script.js"></script>
+    <link rel="stylesheet" href="css/style.css" >
+    <meta charset="utf-8">
+    <title>status</title>
+  </head>
+  <body>
+    {{name}}
+    <h2>Daily status </h2>
+    <div ng-controller="StatusController" ng-init="timeh=1;timem=0;project='project5';activity='coding'" >
+    <div class="form">
+      <form  ng-submit="addList()" >
+
+        <input id="date" type="date" name="date" min="2015-09-18"  max="2015-09-25" ng-model="date">
+        <select id="project" ng-model="project"  required>
+            <option ng-repeat="c in projects">{{c}}</option>
+        </select>
+        <select id="activity" ng-model="activity" required>
+            <option ng-repeat="c in activities">{{c}}</option>
+        </select>
+        <!-- <select id="timeh" ng-model="statusList.timeh" type="number" name=""  min="01" max="08" required>
+            <option ng-repeat="c in statusList.timeh">{{c}}</option>
+        </select> -->
+
+        <input id="timeh" type="number" name=""  min="01" max="08"ng-model="timeh" >
+        <input id="timem" type="number" name="" min="00" max="45" step="15" ng-model="timem"><br>
+        <textarea id="textarea" placeholder="enter your activities here" name="name" rows="8" cols="60" ng-model="textarea" required=""></textarea><br>
+        <div class="btn">
+        <button id="submitbtn" type="button" name="button" ng-click="submit()">save</button>
+      </div>
+    </form>
+    </div>
+  <h3>My history</h3>
+    <div class="list">
+    <ul >
+      <li ng-repeat="list in statusReport">
+          <div class="post">
+            <p>
+              end of the day
+            </p>
+            <p>
+              {{list.date1}}
+            </p>
+            <p>
+              {{list.timeh}} {{list.timem}}
+            </p>
+
+          </div>
+
+
+        <div class="project-details">
+
+            <p ><b>{{list.details}}</b></p>
+        </div>
+       <div class="activity-time">
+
+         <p>  {{list.project}}</p>
+          <p >{{list.activity}}</p>
+      </div>
+      </li>
+    </ul>
+  </div>
+  </div>
+  </body>
+</html>
